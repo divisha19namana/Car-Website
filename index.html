@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VERNA — The City is Asleep</title>
+  <meta name="description"
+    content="VERNA — A city in total blackout at night where the car's light is the only light in the world. Quiet, expensive, precise.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,300..400&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="is-loading">
+
+  <!-- Grain Canvas Overlay -->
+  <canvas id="film-grain" aria-hidden="true"></canvas>
+
+  <!-- Custom Cursor ("Headlight") for Desktop fine pointer -->
+  <div id="custom-cursor" aria-hidden="true">
+    <div class="cursor-ring">
+      <div class="cursor-dot"></div>
+    </div>
+    <div class="cursor-bar"></div>
+    <div class="cursor-label"></div>
+  </div>
+
+  <!-- Preloader Screen -->
+  <div id="preloader" aria-live="polite" aria-label="Loading site assets">
+    <div class="preloader-content">
+      <div class="preloader-wordmark">VERNA</div>
+      <div class="preloader-track">
+        <div class="preloader-line" id="preloader-progress-line"></div>
+      </div>
+      <div class="preloader-counter" id="preloader-counter">000</div>
+    </div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header id="site-nav">
+    <a href="#hero" class="nav-brand" aria-label="VERNA Home">VERNA</a>
+    <nav class="nav-menu" aria-label="Main Navigation">
+      <a href="#lineup" class="nav-link" data-cursor="VIEW">MODELS</a>
+      <a href="#dismantle" class="nav-link" data-cursor="VIEW">TECHNOLOGY</a>
+      <a href="#reserve" class="nav-link" data-cursor="RESERVE">RESERVE</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- SECTION 1: HERO (Pinned Scrollytelling) -->
+    <section id="hero" class="scroll-wrapper" aria-label="Hero Experience">
+      <div class="stage" id="hero-stage">
+        <canvas id="hero-canvas" aria-label="VERNA electric vehicle driving through blackout city sequence"></canvas>
+        <div class="canvas-blackout" id="hero-blackout"></div>
+
+        <!-- Left-edge Telemetry HUD -->
+        <aside class="hero-hud" aria-label="Telemetry HUD">
+          <div class="hud-item hud-chapter">
+            <span class="hud-tick" aria-hidden="true"></span>
+            <span class="hud-label">CHAPTER</span>
+            <span class="hud-value" id="hud-chapter-val">01 / 04</span>
+          </div>
+          <div class="hud-divider" aria-hidden="true"></div>
+          <div class="hud-item">
+            <span class="hud-label">VELOCITY</span>
+            <span class="hud-value" id="hud-speed-val">000 KM/H</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">DISTANCE</span>
+            <span class="hud-value" id="hud-distance-val">0.0 KM</span>
+          </div>
+          <div class="hud-divider" aria-hidden="true"></div>
+          <div class="hud-item">
+            <span class="hud-label">LIGHT SYSTEM</span>
+            <span class="hud-value text-xenon">ACTIVE</span>
+          </div>
+        </aside>
+
+        <!-- Chapter Overlays (Positioned in Sky) -->
+        <div class="hero-chapters">
+          <!-- Chapter 1 (0–12%) -->
+          <article class="chapter-block" id="chapter-1" data-index="0">
+            <div class="line-mask">
+              <h1 class="chapter-title line-inner">VERNA</h1>
+            </div>
+            <div class="line-mask">
+              <p class="chapter-sub line-inner">The city is asleep.</p>
+            </div>
+            <div class="scroll-hint">
+              <span class="hint-text">SCROLL TO WAKE IT</span>
+              <span class="hint-line" aria-hidden="true"></span>
+            </div>
+          </article>
+
+          <!-- Chapter 2 (22–40%) -->
+          <article class="chapter-block" id="chapter-2" data-index="1">
+            <div class="line-mask">
+              <h2 class="chapter-headline line-inner">It doesn’t need the city’s light.</h2>
+            </div>
+          </article>
+
+          <!-- Chapter 3 (50–68%) -->
+          <article class="chapter-block" id="chapter-3" data-index="2">
+            <div class="line-mask">
+              <h2 class="chapter-headline line-inner">It brings its own.</h2>
+            </div>
+          </article>
+
+          <!-- Chapter 4 (80–100%) -->
+          <article class="chapter-block" id="chapter-4" data-index="3">
+            <div class="line-mask">
+              <h2 class="chapter-model line-inner">SX (O)</h2>
+            </div>
+            <div class="line-mask">
+              <p class="chapter-specs line-inner">0–100 KM/H 3.1S · 640 KM RANGE · DUAL MOTOR</p>
+            </div>
+            <div class="line-mask"><a href="#lineup" class="chapter-link line-inner" data-cursor="VIEW">Discover the
+                SX (O)</a></div>
+          </article>
+        </div>
+
+        <!-- Section Scroll Progress Bar -->
+        <div class="stage-progress" id="hero-progress" aria-hidden="true">
+          <div class="stage-progress-fill" id="hero-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: STATEMENT (Unpinned) -->
+    <section id="statement" class="section-statement" aria-label="Engineering Statement">
+      <div class="statement-inner">
+        <p class="section-mono-tag">02 — ENGINEERING</p>
+        <blockquote class="statement-quote" id="statement-quote">
+          <!-- Words will be split and injected by JS for scroll opacity reveal -->
+          Every part was designed to disappear into one line of light.
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DISMANTLE (Pinned Scrollytelling) -->
+    <section id="dismantle" class="scroll-wrapper" aria-label="Architecture and Dismantle Sequence">
+      <div class="stage" id="dismantle-stage">
+        <canvas id="dismantle-canvas" aria-label="VERNA structural architecture explosion sequence"></canvas>
+
+        <!-- Top-left Header -->
+        <div class="dismantle-header">
+          <p class="section-mono-tag">02.1 — ARCHITECTURE</p>
+          <h2 class="dismantle-title">Look closer.</h2>
+        </div>
+
+        <!-- Callouts Layer (Visible after 70% progress) -->
+        <div class="callouts-container" id="dismantle-callouts" aria-label="Component Specifications">
+          <!-- Callout elements dynamically managed / positioned from config.js -->
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="stage-progress" id="dismantle-progress" aria-hidden="true">
+          <div class="stage-progress-fill" id="dismantle-progress-fill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LINEUP (Hover Accordion) -->
+    <section id="lineup" class="section-lineup" aria-label="Vehicle Lineup">
+      <div class="lineup-header">
+        <p class="section-mono-tag">03 — THE LINEUP</p>
+        <h2 class="lineup-title">Five ways to drive the night.</h2>
+      </div>
+
+      <div class="lineup-accordion" id="lineup-accordion" role="tablist" aria-label="VERNA Model Range">
+        <!-- 5 vertical slides generated/hydrated by main.js from config.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 5: RESERVE -->
+    <section id="reserve" class="section-reserve" aria-label="Reserve Vehicle">
+      <div class="reserve-content">
+        <p class="section-mono-tag">04 — ALLOCATION</p>
+        <h2 class="reserve-title">Drive the night.</h2>
+        <p class="reserve-body">Limited production commencing late 2026. Secure your chassis reservation.</p>
+        <button class="reserve-btn" id="btn-reserve" data-cursor="RESERVE">
+          <span class="reserve-btn-tick" aria-hidden="true"></span>
+          <span class="reserve-btn-label">RESERVE YOUR VERNA</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="site-footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">VERNA</div>
+        <div class="footer-columns">
+          <div class="footer-col">
+            <span class="footer-col-title">MODELS</span>
+            <ul class="footer-links">
+              <li><a href="#lineup" data-cursor="VIEW">SX (O)</a></li>
+              <li><a href="#lineup" data-cursor="VIEW">S</a></li>
+              <li><a href="#lineup" data-cursor="VIEW">X</a></li>
+              <li><a href="#lineup" data-cursor="VIEW">R</a></li>
+              <li><a href="#lineup" data-cursor="VIEW">ONE</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">TECHNOLOGY</span>
+            <ul class="footer-links">
+              <li><a href="#dismantle" data-cursor="VIEW">Structural Monocoque</a></li>
+              <li><a href="#dismantle" data-cursor="VIEW">Axial-Flux Drive</a></li>
+              <li><a href="#dismantle" data-cursor="VIEW">110 kWh Pack</a></li>
+              <li><a href="#dismantle" data-cursor="VIEW">Xenon Lightbar</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">COMPANY</span>
+            <ul class="footer-links">
+              <li><a href="#hero" data-cursor="VIEW">Manifesto</a></li>
+              <li><a href="#reserve" data-cursor="RESERVE">Allocation</a></li>
+              <li><a href="#reserve" data-cursor="VIEW">Private Atelier</a></li>
+              <li><a href="#reserve" data-cursor="VIEW">Press</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">© 2026 Hyundai VERNA . ALL SPECIFICATIONS PRELIMINARY.</span>
+        <span class="footer-mono">ZERO EMISSIONS · INFINITE DARK</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+</body>
+
+</html>

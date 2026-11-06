@@ -1,0 +1,12 @@
+# Dependencies
+node_modules/
+tools/node_modules/
+
+# Archives & raw dumps
+*.zip
+*.tar.gz
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini
